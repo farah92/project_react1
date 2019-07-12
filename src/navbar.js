@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { Route, NavLink, HashRouter , BrowserRouter as Router  } from "react-router-dom";
 import Home from "./grafik";
+import Product from "./Home";
 import About from "./Table";
 
 class FixedNavbarExample extends React.Component {
@@ -37,16 +38,17 @@ class FixedNavbarExample extends React.Component {
                       <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="#">Transaction</MDBNavLink>
+                      <MDBNavLink to="/Product">List Product</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="/Table">Stock Product</MDBNavLink>
+                      <MDBNavLink to="/Table">Stock</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBNavbar>
           </header>
           <Route exact path="/" component={Home}/>
+          <Route path="/Product" component={Product}/>
           <Route path="/Table" component={About}/>
         </Router>
       </div>
