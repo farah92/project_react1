@@ -1,23 +1,61 @@
 import React, { Component } from "react";
- 
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <h2>Home</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- Morbi et est vitae sapien hendrerit mattis sit amet sed purus. 
-Nunc commodo sapien risus, eget commodo libero molestie vel. 
-Donec a tortor tincidunt, lacinia orci eget, feugiat leo. 
-Etiam volutpat molestie tempor. Mauris id eros porttitor, hendrerit odio 
-eget, laoreet mi. Vestibulum diam erat, scelerisque id eros nec, iaculis 
-pulvinar arcu. Mauris vestibulum magna vitae molestie egestas. Vestibulum 
-lobortis diam vel mauris rutrum, eget maximus purus lacinia. Sed et tellus 
-vel nibh vestibulum pretium non sit amet tortor. Nulla in mattis ligula. 
-Curabitur feugiat eros nec odio pretium ullamcorper.</p>
-      </div>
-    );
+import './style.css';
+
+class Product extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    };
   }
-}
- 
-export default Home;
+
+  componentDidMount() {
+      fetch("https://randomuser.me/api/?results=10")
+      //fetch("http://server64/project_react/fetching.php?results=10")
+        .then(res => res.json())
+        .then(parsedJSON => parsedJSON.results.map(data => (
+          {
+            id: `${data.id.name}`,
+            firstName: `${data.name.first}`,
+            lastName: `${data.name.last}`,
+            location: `${data.location.state}, ${data.nat}`,
+            thumbnail: `${data.picture.large}`,
+
+          }
+        )))
+        .then(items => this.setState({
+          items,
+          isLoaded: false
+        }))
+        .catch(error => console.log('parsing failed', error))
+    }
+
+    render() {
+      const {items } = this.state;
+        return (
+          <div className="boxWhite">
+            <h2>Customer</h2>
+            {
+              items.length > 0 ? items.map(item => {
+              const {id, firstName, lastName, location, thumbnail} = item;
+               return (
+
+               <div key={id} className="bgCircle">
+               <center><img src={thumbnail} alt={firstName} className="circle"/> </center><br />
+               <div className="ctr">
+                  {firstName} {lastName}<br />
+                  {location}
+                </div>
+
+              </div>
+              );
+            }) : null
+          }
+          </div>
+        );
+
+    }
+  }
+
+export default Product;
