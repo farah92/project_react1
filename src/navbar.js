@@ -38,18 +38,18 @@ class FixedNavbarExample extends React.Component {
                       <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="/Product">List Product</MDBNavLink>
+                      <MDBNavLink to="/Customer">Customer</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="/Table">Stock</MDBNavLink>
+                      <MDBNavLink to="/Stock">Product Stock</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBNavbar>
           </header>
           <Route exact path="/" component={Home}/>
-          <Route path="/Product" component={Product}/>
-          <Route path="/Table" component={About}/>
+          <Route path="/Customer" component={Product}/>
+          <Route path="/Stock" component={About}/>
         </Router>
       </div>
     );
